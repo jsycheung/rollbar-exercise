@@ -48,6 +48,12 @@ app.post("/api/students", (req, res) => {
     } else if (name === "") {
       rollbar.error("No name provided");
       res.status(400).send("You must enter a name.");
+    } else if (name === "Jasmine") {
+      rollbar.critical("You cannot enter your own name.");
+      res.status(400).send("You can't enter your own name.");
+    } else if (name === "Jasper") {
+      rollbar.warning("Forbidden name.");
+      res.status(400).send("You can't enter a forbidden name.");
     } else {
       rollbar.error("Student already exists");
       res.status(400).send("That student already exists.");
